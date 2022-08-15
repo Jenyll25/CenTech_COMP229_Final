@@ -1,0 +1,121 @@
+<!-- Main Content -->
+<div class="background">
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="container form-container table-container">
+      <%if (displayName){ %>
+        <div class="row">
+          <div class="col-md-9">
+            <h1 style="color: rgb(6, 8, 6); ">Survey: <%= surveys.Title %>
+            </h1>
+
+          </div>
+          <div class="col-md-3">
+            <a href="#" class="btn btn-primary" role="button"
+              onclick="ExportToExcel('xlsx')">
+              <i class="fas fa-file-excel"></i> Export To Excel</a>
+          </div>
+          <div class="col-md-12">
+
+            <table id="report_table" class="table table-striped">
+              <tr>
+                <% if ( surveys.QuestionType=="True/False" ) { %>
+                  <th class="col-6">Question</th>
+                  <th class="col-2">True</th>
+                  <th class="col-2">False</th>
+                  <% } %>
+                    <% if ( surveys.QuestionType=="RatingScale" ) { %>
+                      <th class="col-6">Question</th>
+                      <th class="col-2">Very Satisfied</th>
+                      <th class="col-1">Satisfied</th>
+                      <th class="col-1">Dissatisfied</th>
+                      <th class="col-2">Very Dissatisfied</th>
+                      <% } %>
+
+                        <% if ( surveys.QuestionType=="TextQuestion" ) { %>
+                          <th class="col-4">
+                            <% surveys.Questions[0] %>
+                          </th>
+                          <th class="col-4">
+                            <% surveys.Questions[1] %>
+                          </th>
+                          <th class="col-4">
+                            <% surveys.Questions[2] %>
+                          </th>
+                          <th class="col-4">
+                            <% surveys.Questions[3] %>
+                          </th>
+                          <th class="col-4">
+                            <% surveys.Questions[4] %>
+                          </th>
+                          <% } %>
+
+              </tr>
+
+              <% if ( votes> 0) { %>
+                <% for (i=0; i < surveys.Questions.length; i++ ) { %>
+                  <tr>
+                    <% if ( surveys.QuestionType=="True/False" ) { %>
+                      <td class="col-6">
+                        <%= surveys.Questions[i] %>
+                      </td>
+                      <td class="col-2">
+                        <%= answerTrue[i] %>
+                      </td>
+                      <td class="col-2">
+                        <%= answerFalse[i] %>
+                      </td>
+                      <% } %>
+                        <% if ( surveys.QuestionType=="RatingScale" ) { %>
+                          <td class="col-6">
+                            <%= surveys.Questions[i] %>
+                          </td>
+                          <td class="col-1">
+                            <%= verySatisfied[i] %>
+                          </td>
+                          <td class="col-1">
+                            <%= satisfied[i] %>
+                          </td>
+                          <td class="col-1">
+                            <%= dissatisfied[i] %>
+                          </td>
+                          <td class="col-2">
+                            <%= veryDissatisfied[i] %>
+                          </td>
+                          <% } %>
+
+                            <% if ( surveys.QuestionType=="TextQuestion" ) { %>
+                              <td class="col-6">
+                                <%= surveys.Questions[i] %>
+                              </td>
+                              <td class="col-1">
+                                <%= verySatisfied[i] %>
+                              </td>
+                              <td class="col-1">
+                                <%= satisfied[i] %>
+                              </td>
+                              <td class="col-1">
+                                <%= dissatisfied[i] %>
+                              </td>
+                              <td class="col-2">
+                                <%= veryDissatisfied[i] %>
+                              </td>
+                              <% } %>
+                  </tr>
+                  <% } %>
+                    <% } %>
+            </table>
+          </div>
+          <div class="row justify-content-around">
+            <div class="col-2" style="margin-left: 83%;">
+              <a href="/api/mysurvey"><button class="btn btn-primary" style="margin-bottom: 50px; margin-top: 50px;">
+                  <i class="fa-solid fa-arrow-rotate-left"></i> Return</button></a>
+            </div>
+          </div>
+
+          <%}%>
+        </div>
+    </div>

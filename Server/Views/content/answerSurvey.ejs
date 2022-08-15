@@ -1,0 +1,98 @@
+<!-- Content for the Answer Survey page -->
+<div class="background">
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <form class="form" method="POST">
+          <div class="form-group">
+
+            <h1 class="title-form">
+              <%= title %>
+            </h1>
+
+            <% for (i=0; i < 5; i++) { %>
+              <div class="question-card">
+                <p class="h5 p-1 bd-highlight text-question">
+                  <%= i+1 %>. <%= surveys.Questions[i] %>
+                </p>
+
+                <% if ( surveys.QuestionType=="True/False" ) { %>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="radio" class="btn-check" name="answer<%= i %>" id="radio1-<%= i %>" value="true"
+                        autocomplete="off">
+                      <label class="btn btn-outline-dark" for="radio1-<%= i %>">True</label>
+
+                    </div>
+                    <div class="col-md-6">
+                      <input type="radio" class="btn-check" name="answer<%= i %>" id="radio2-<%= i %>" value="false"
+                        autocomplete="off">
+                      <label class="btn btn-outline-dark" for="radio2-<%= i %>">False</label>
+                    </div>
+                  </div>
+
+                  <% } %>
+                    <% if ( surveys.QuestionType=="RatingScale" ) { %>
+                      <div class="row">
+                        <div class="col-6">
+                          <input class="form-check-input" type="radio" name="answer<%= i %>" id="scale1-<%= i %>"
+                            value="very-satisfied" checked=true>
+                          <label style="color: rgb(9, 8, 8);" class="form-check-label" for="scale1-<%= i %>">Very
+                            satisfied</label>
+                        </div>
+                        <div class="col-6">
+                          <input class="form-check-input" type="radio" name="answer<%= i %>" id="scale2-<%= i %>"
+                            value="dissatisfied">
+                          <label style="color: rgb(9, 8, 8);" class="form-check-label"
+                            for="scale2-<%= i %>">Dissatisfied</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <input class="form-check-input" type="radio" name="answer<%= i %>" id="scale3-<%= i %>"
+                            value="satisfied">
+                          <label style="color: rgb(9, 8, 8);" class="form-check-label"
+                            for="scale3-<%= i %>">Satisfied</label>
+
+                        </div>
+                        <div class="col-6">
+                          <input class="form-check-input" type="radio" name="answer<%= i %>" id="scale4-<%= i %>"
+                            value="very-dissatisfied">
+                          <label style="color: rgb(9, 8, 8);" class="form-check-label" for="scale5-<%= i %>">Very
+                            dissatisfied</label>
+                        </div>
+                      </div>
+
+
+                      <% } %>
+
+                        <%if(surveys.QuestionType=="TextQuestion"){ %>
+                          <label for="a<%= i %>">Answer:</label>
+                          <input type="text" class="form-control" id="a<%= i %>" placeholder="Write your answer"
+                            name="answer<%= i %>" value="" required>
+                          <% } %>
+              </div>
+              <% } %>
+                <div class="row submit-form">
+                  <div class="col-6">
+                    <button class="btn btn-primary w-100 mt-3" type="submit">
+                      <i class="fa-solid fa-paper-plane"></i> Submit</button>
+                  </div>
+                  <div class="col-6">
+                    <a href="/api/survey-list" class=" w-100 btn btn-warning  mt-3">
+                      <i class="fas fa-undo"></i> Cancel</a>
+                  </div>
+                </div>
+        </form>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

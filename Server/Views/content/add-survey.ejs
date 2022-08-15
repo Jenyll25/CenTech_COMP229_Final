@@ -1,0 +1,78 @@
+<!-- MAIN CONTENT -->
+<!-- Content for the Add page -->
+<style>
+  .background {
+    min-height: 120vh;
+  }
+</style>
+<div class="parent">
+  <div class="background">
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="row form-container mt-1 add-survey">
+      <div class="offset-md-3 col-md-6 col-sm-12">
+        <h3 class="text-white text-center display-5">Create your Survey</h3>
+        <form class="form" method="POST">
+          <div class="form-group">
+            <label style="color: rgb(11, 8, 8);" class="h5" for="NameTextField">Survey Title must be unique.</label>
+            <input type="text" class="form-control" id="NameTextField" placeholder="Survey Name" name="surveyTitle"
+              value="" required>
+          </div>
+          <label class="h6">Type of Question: </label>
+          <div class="form-group">
+            <input class="form-check-input" type="radio" name="surveyType" id="inlineRadio1" value="True/False"
+              checked=true>
+            <label style="color: rgb(9, 8, 8);" class="form-check-label" for="inlineRadio1">True/False</label>
+            <input class="form-check-input" type="radio" name="surveyType" id="inlineRadio2" value="RatingScale">
+            <label style="color: rgb(4, 3, 3);" class="form-check-label" for="inlineRadio2">Rating Scale</label>
+            <input class="form-check-input" type="radio" name="surveyType" id="inlineRadio3" value="TextQuestion">
+            <label style="color: rgb(4, 3, 3);" class="form-check-label" for="inlineRadio3">Text Question</label>
+
+          </div>
+          <!-- setting the start date and end date -->
+          <script>
+            $("date").on("change", function () {
+              this.setAttribute(
+                "data-date",
+                moment(this.value, "YYYY-MM-DD").local().
+                  format(this.getAttribute("data-date-format"))
+              )
+            }).trigger("change")
+          </script>
+
+          <div class="form-group">
+            <label style="color: rgb(11, 8, 8);" class="h6" for="">Survey Start Date</label>
+            <input type="date" class="date form-control" id="" placeholder="yyyy-mm-dd" name="surveyStartDate" value=""
+              required data-date="">
+          </div>
+
+          <div class="form-group">
+            <label style="color: rgb(3, 3, 3);" class="h6" for="">Survey End Date</label>
+            <input type="date" class="date form-control" id="" placeholder="Survey end date" name="surveyEndDate"
+              value="" required>
+          </div>
+
+          <!-- Array of questions -->
+          <% for (i=1; i < 6; i++) { %>
+            <div class="form-group">
+              Question <%= i %><input type="text" class="form-control" id="" placeholder="Write your question"
+                  name="q<%= i %>" value="" required>
+            </div>
+            <% } %>
+
+              <button class="btn btn-primary " type="submit">
+                <i class="fas fa-edit"></i> Submit</button>
+
+              <a href="/api/survey-list" class="btn btn-warning">
+                <i class="fas fa-undo"></i> Cancel</a>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <!-- CSS Goes Here -->
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans">
+    <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/Content/app.css">
+</head>
+<body>
+    <!-- Main Navigation Section -->
+    <header class="sticky-top">
+        <%- include('components/header.ejs'); %> <!-- Inserts or injects my header.ejs inside my header-->
+    </header>
+
+    <!-- Content Section -->
+    <main>
+        <%- include('content/' + page + '.ejs'); %>
+    </main>
+    
+    <!-- Site-wide Footer Section -->
+    <footer>
+        <!-- Site-wide footer -->
+        <%- include('components/footer.ejs'); %> <!-- Inserts or injects my footerr.ejs inside my footer-->
+    </footer>
+    
+    <!-- JavaScript goes here -->
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/@fortawesome/fontawesome-free/js/all.min.js"></script>
+    <script src="/Scripts/app.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+</body>
+</html>

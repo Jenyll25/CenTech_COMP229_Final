@@ -1,0 +1,78 @@
+<!-- MAIN CONTENT -->
+<!-- Content for Edit Survey Page -->
+<style>
+  .background {
+    min-height: 120vh;
+  }
+</style>
+<div class="background">
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="row form-container mt-1 add-survey">
+    <div class="offset-md-3 col-md-6 col-sm-12">
+          <h1 class="text-white text-center display-5" >Edit Survey</h1>
+          <form class="form" method="POST">
+            <div class="form-group">
+              <label style="color: rgb(9, 8, 8);" for="NameTextField">Title</label>
+              <input type="text" class="form-control" id="NameTextField"
+              placeholder="Survey Name" name="surveyTitle" value="<%= surveys.Title %>" required>
+            </div>
+            
+            <br>
+            <div class="form-group">
+              <label style="color: rgb(10, 8, 8);" for="">Survey Start Date</label>
+              <input type="date" class="form-control" id=""
+              placeholder="Survey start date" name="surveyStartDate" value="<%= surveys.StartDate.toISOString().substr(0, 10) %>"  required>
+            </div>
+
+            <div class="form-group">
+              <label style="color: rgb(6, 5, 5);" for="">Survey End Date</label>
+              <input type="date" class="form-control" id=""
+              placeholder="Survey end date" name="surveyEndDate" value="<%= surveys.EndDate.toISOString().substr(0, 10) %>"  required>
+            </div>
+
+            <br>
+            <div class="form-group">
+              <label style="color: rgb(9, 6, 6);" for="NameTextField">Question 1</label>
+              <input type="text" class="form-control" id=""
+              placeholder="Questionn #1" name="q1" value="<%= surveys.Questions[0] %>" required>
+            </div>
+
+            <div class="form-group">
+              <label style="color: rgb(9, 6, 6);" for="NameTextField">Question 2</label>
+              <input type="text" class="form-control" id=""
+              placeholder="Questionn #2" name="q2" value="<%= surveys.Questions[1] %>" required>
+            </div>
+
+            <div class="form-group">
+              <label style="color: rgb(14, 11, 11);" for="NameTextField">Question 3</label>
+              <input type="text" class="form-control" id=""
+              placeholder="Questionn #3" name="q3"value="<%= surveys.Questions[2] %>" required>
+            </div>
+
+            <div class="form-group">
+              <label style="color: rgb(8, 5, 5);" for="NameTextField">Question 4</label>
+              <input type="text" class="form-control" id=""
+              placeholder="Questionn #4" name="q4" value="<%= surveys.Questions[3] %>" required>
+            </div>
+
+            <div class="form-group">
+              <label style="color: rgb(3, 3, 3);" for="NameTextField">Question 5</label>
+              <input type="text" class="form-control" id="NameTextField"
+              placeholder="Questionn #5" name="q5" value="<%= surveys.Questions[4] %>" required>
+            </div>
+
+            <button class="btn btn-primary " type="submit">
+              <i class="fas fa-edit"></i> Submit</button>
+          
+              <a href="/api/survey-list" class="btn btn-warning">
+                  <i class="fas fa-undo"></i> Cancel</a>
+          </form>
+          
+      </div>
+
+  </div>
+</div>

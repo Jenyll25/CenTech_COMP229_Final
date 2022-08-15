@@ -1,0 +1,11 @@
+{
+    "survey":
+    {
+        "Title": "Favourites",
+        "Owner": "Jenyll Mabborang",
+        "isActive": true,
+        "StartDate": "07/17/2022",
+        "EndDate": "07/22/2022",
+        "Array_Questions": 3
+    }
+}
