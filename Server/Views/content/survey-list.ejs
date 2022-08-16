@@ -10,57 +10,114 @@
        <div class="cube"></div>
        <div class="cube"></div>
       <div class="cube"></div>
-
+    
+      <div class="container-fluid">
+        <div class="slideshow-container" style="padding-top: 50px; background-color: bisque;">
+          <div class="animated-gif fade">
+            <a href="#availableSurvey">
+              <img src="/Assets/videos/survey.gif" width="100%">
+              <div class="text" style="color: white;">View our Available Survey</div>
+            </a>
+          </div>
+        
+          <div class="animated-gif fade">
+            <a href="/api/add">
+              <img src="/Assets/videos/types.gif" width="100%">
+              <div class="text">Create your own Survey</div>
+            </a>
+          </div>
+        
+          <div class="animated-gif fade">
+            <a href="#availableSurvey">
+              <img src="/Assets/videos/answer.gif" width="100%">
+              <div class="text">Answer Survey</div>
+            </a>
+          </div>
+        
+          <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        
+        <!-- The dots/circles -->
+        <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+        
+        <script>
+            let slideIndex = 1;
+            showSlides(slideIndex);
+            
+            function plusSlides(n) {
+              showSlides(slideIndex += n);
+            }
+            
+            function currentSlide(n) {
+              showSlides(slideIndex = n);
+            }
+            
+            function showSlides(n) {
+              let i;
+              let slides = document.getElementsByClassName("animated-gif");
+              let dots = document.getElementsByClassName("dot");
+              if (n > slides.length) {slideIndex = 1}    
+              if (n < 1) {slideIndex = slides.length}
+              for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+              }
+              for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+              }
+              slides[slideIndex-1].style.display = "block";  
+              dots[slideIndex-1].className += " active";
+            }
+          </script>
+        </div>
+      </div>
+      
+      <div class="container mb-5">
             <section class="section-header-content" >
               <% if(displayName) {%>
                 <div>
-                  <a href="/api/add"><button style="margin-top: 0px;"><i class="fa fa-plus"></i> Create</button></a>
+                  <a href="/api/add"><button style="background-color: rgb(50, 123, 192); color: aliceblue;"><i class="fa fa-plus-circle fa-1x"></i> Create</button></a>
                 </div>
               <%}%>
-              <h3 style="color: rgb(248, 244, 244); margin-top: 10px; margin-bottom: 50px;"><b>Available Surveys</b></h3>
+                <h3 style="color: rgb(247, 247, 249); margin-top: 20px; margin-bottom: 50px;"><b>Available Surveys</b></h3>
             </section>
-      <!-- Content for the survey-list page -->   
-      <!-- Main Content -->
-    <main class="container">
-            <div class="col-md-11 text-center">
-              <div class="row">
-                <% for(let count = 0; count < surveys.length; count++) { %>
-                    <% if(displayName) {%>
-                        <% if ( today >= surveys[count].StartDate && today <= surveys[count].EndDate) {%>
-                            <div class="col-3">    
-                                    <div class="card text-center popup" style="background-color: transparent; margin-bottom: 15px;">
-                                        <div class="card-body" style="border-radius: 10px 10px; background-color:#fcfeff;   cursor: pointer; cursor: hand;" onclick="window.location='/api/answer/<%= surveys[count]._id %>';">
-                                            <div class="row">
-                                              <div class="col">
-                                                <h5 style="color: rgb(7, 5, 5); margin-top: 2px;  font-family:'Rockwell';" class="card-title"><%= surveys[count].Title %></h5>
-                                                <h7>Available until: <%= surveys[count].EndDate.toISOString().split('T')[0] %></h7>
+      
+            <!-- Content for the survey-list page -->   
+            <!-- Main Content -->
+            <div id="availableSurvey" class="row row-cols-1 row-cols-md-3 g-1">
+                      <% for(let count = 0; count < surveys.length; count++) { %>
+                          <% if(displayName) {%>
+                              <% if ( today >= surveys[count].StartDate && today <= surveys[count].EndDate) {%> 
+                                <div class="col">
+                                          <div class="card text-center popup" style="margin-left: auto; border-color:bisque; border-width: 2px; margin-bottom: 20px;">
+                                              <div class="card-body text-center" style="border-radius: 20px 20px; background-color: transparent;   cursor: pointer; cursor: hand; height: 120px;" onclick="window.location='/api/answer/<%= surveys[count]._id %>';">
+                                                  <div class="card-title" style="color:  rgb(82, 82, 229);"><h5><b><%= surveys[count].Title %></h5> </b> </div>
+                                                  <div class="card-text"> Available until: <%= surveys[count].EndDate.toISOString().split('T')[0] %> </div>
                                               </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                    <% } 
-                    } 
-                    else { %>
-                            <% if ( today >= surveys[count].StartDate && today <= surveys[count].EndDate) {%>
-                              <div class="col-3">    
-                                <div class="card text-center popup" style="background-color: transparent; margin-bottom: 15px;">
-                                    <div class="card-body" style="border-radius: 10px 10px; background-color:#fcfeff;   cursor: pointer; cursor: hand;" onclick="window.location='/api/answer/<%= surveys[count]._id %>';">
-                                        <div class="row">
-                                          <div class="col">
-                                            <h5 style="color: rgb(7, 5, 5); margin-top: 2px;  font-family:'Rockwell';" class="card-title"><%= surveys[count].Title %></h5>
-                                            <h7>Available until: <%= surveys[count].EndDate.toISOString().split('T')[0] %></h7>
                                           </div>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
-                            <% } %>
-                        
-                    <% } 
-                  } %>
-                    
-                </div>
+                          <% } 
+                          } 
+                          else { %>
+                                  <% if ( today >= surveys[count].StartDate && today <= surveys[count].EndDate) {%>
+                                    <div class="col">
+                                      <div class="card text-center popup" style="margin-left: auto; background-color:bisque; margin-bottom: 20px;">
+                                        <div class="card-body text-center" style="border-radius: 20px 20px; background-color: transparent;    cursor: pointer; cursor: hand; height: 120px;" onclick="window.location='/api/answer/<%= surveys[count]._id %>';">
+                                            <div class="card-title" style="color:  rgb(82, 82, 229);"><h5><b><%= surveys[count].Title %></h5> </b> </div>
+                                            <div class="card-text"> Available until: <%= surveys[count].EndDate.toISOString().split('T')[0] %> </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  <% } %>
+                              
+                          <% } 
+                        } %> 
             </div>
-          </div>
-      </main>
+      </div>
+
+    </div>
+  </div>
