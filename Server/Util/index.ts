@@ -20,7 +20,7 @@ export function AuthGuard(req: express.Request, res: express.Response, next: exp
 {
     if(!req.isAuthenticated())  
     {
-        return res.redirect('/login');
+        return res.redirect('/api/login');
     }
     next();  
 }

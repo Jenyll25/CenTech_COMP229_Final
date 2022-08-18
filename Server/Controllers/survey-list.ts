@@ -249,24 +249,6 @@ export function DisplayReportSurveyPage(req: express.Request, res: express.Respo
                             break;
                     }
                 }
-                if(surveyReport.QuestionType == "TextQuestion"){
-                  switch (docs[j].answer[a]) {                                
-                    case "":
-                        verySatisfied[a]++;
-                        break;
-                    case "satisfied":
-                        satisfied[a]++;
-                        break;
-                    case "dissatisfied":
-                        dissatisfied[a]++;
-                        break;
-                    case "very-dissatisfied":
-                        veryDissatisfied[a]++;
-                        break;
-                    default:
-                        break;
-                }
-                }
             }
           }
 

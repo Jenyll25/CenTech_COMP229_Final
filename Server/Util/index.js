@@ -39,7 +39,7 @@ function UserDisplayName(req) {
 exports.UserDisplayName = UserDisplayName;
 function AuthGuard(req, res, next) {
     if (!req.isAuthenticated()) {
-        return res.redirect('/login');
+        return res.redirect('/api/login');
     }
     next();
 }

@@ -188,24 +188,6 @@ function DisplayReportSurveyPage(req, res, next) {
                                     break;
                             }
                         }
-                        if (surveyReport.QuestionType == "TextQuestion") {
-                            switch (docs[j].answer[a]) {
-                                case "":
-                                    verySatisfied[a]++;
-                                    break;
-                                case "satisfied":
-                                    satisfied[a]++;
-                                    break;
-                                case "dissatisfied":
-                                    dissatisfied[a]++;
-                                    break;
-                                case "very-dissatisfied":
-                                    veryDissatisfied[a]++;
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
                     }
                 }
                 if (surveyReport.QuestionType == "True/False") {

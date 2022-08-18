@@ -61,7 +61,7 @@ function ProcessRegisterPage(req, res, next) {
                 console.error(err.name);
                 req.flash('registerMessage', 'Server Error!');
             }
-            return res.redirect('/register');
+            return res.redirect('/api/register');
         }
         return passport_1.default.authenticate('local')(req, res, function () {
             return res.redirect('/api/login');

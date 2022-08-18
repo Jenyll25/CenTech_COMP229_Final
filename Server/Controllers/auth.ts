@@ -96,7 +96,7 @@ export function ProcessRegisterPage(req: express.Request, res: express.Response,
                 console.error(err.name); //other error
                 req.flash('registerMessage', 'Server Error!');
             }
-            return res.redirect('/register');
+            return res.redirect('/api/register');
         }
 
         //everything is okay - user has been registered
